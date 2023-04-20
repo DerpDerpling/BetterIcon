@@ -19,6 +19,8 @@ import java.nio.file.Files;
 public abstract class class_8518Mixin {
     @Inject(method = "method_51419", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void method_51419(ResourcePack resourcePack, String string, CallbackInfoReturnable<InputSupplier<InputStream>> cir, String[] strings, InputSupplier<InputStream> inputSupplier) {
-        cir.setReturnValue(() -> MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(new Identifier("bettericon", string)).getInputStream());
+        if(strings.length == 2) {
+            cir.setReturnValue(() -> MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(new Identifier("bettericon", string)).getInputStream());
+        }
     }
 }
