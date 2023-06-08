@@ -1,3 +1,3 @@
 # BetterIcon
 
-Reverts the snapshot icon back to the crafting table
+Reverts the Minecraft icon to the pre-1.20 icon.
