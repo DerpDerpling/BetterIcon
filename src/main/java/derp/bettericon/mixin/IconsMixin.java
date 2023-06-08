@@ -1,7 +1,7 @@
-package com.bawnorton.bettericon.mixin.client;
+package derp.bettericon.mixin;
 
-import net.minecraft.class_8518;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.Icons;
 import net.minecraft.resource.InputSupplier;
 import net.minecraft.resource.ResourcePack;
 import net.minecraft.util.Identifier;
@@ -11,16 +11,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.util.Arrays;
 
-@Mixin(class_8518.class)
-public abstract class class_8518Mixin {
-    @Inject(method = "method_51419", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void method_51419(ResourcePack resourcePack, String string, CallbackInfoReturnable<InputSupplier<InputStream>> cir, String[] strings, InputSupplier<InputStream> inputSupplier) {
-        if(Arrays.asList(strings).contains("snapshot")) {
+@Mixin(Icons.class)
+public abstract class IconsMixin {
+    @Inject(method = "getIcon(Lnet/minecraft/resource/ResourcePack;Ljava/lang/String;)Lnet/minecraft/resource/InputSupplier;", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+    private void GetIcon(ResourcePack resourcePack, String string, CallbackInfoReturnable<InputSupplier<InputStream>> cir, String[] strings, InputSupplier<InputStream> inputSupplier) {
+        if(strings.length == 2) {
             cir.setReturnValue(() -> MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(new Identifier("bettericon", string)).getInputStream());
         }
     }

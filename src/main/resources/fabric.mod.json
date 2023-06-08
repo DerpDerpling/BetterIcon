@@ -5,26 +5,28 @@
 	"name": "BetterIcon",
 	"description": "Replaces the new Minecraft snapshot icon with the old one.",
 	"authors": [
-		"Bawnorton"
+		"DerpDerpling"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/bettericon/icon.png",
+	"icon": "icon.png",
 	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"derp.bettericon.BetterIcon"
+		]
+	},
 	"mixins": [
-		"bettericon.mixins.json",
-		{
-			"config": "bettericon.client.mixins.json",
-			"environment": "client"
-		}
+		"bettericon.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.19",
-		"minecraft": "1.20-alpha.23.16.a",
-		"java": ">=17"
+		"fabricloader": ">=0.14.21",
+		"minecraft": ">=1.20-",
+		"java": ">=17",
+		"fabric-api": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
